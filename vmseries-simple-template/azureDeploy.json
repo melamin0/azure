@@ -82,11 +82,27 @@
                 "description": "SSH rsa public key file as a string."
             }
         },
+        "imageVersion": {
+            "type": "string",
+            "defaultValue": "latest",
+            "allowedValues": [
+                "7.1.1",
+		"8.0.0"		    
+            ],
+            "metadata": {
+                "description": "PAN-OS version."
+            }
+        },
         "vmSize": {
             "type": "string",
             "allowedValues": [
                 "Standard_D3",
-                "Standard_D4"
+		"Standard_D3_v2",
+                "Standard_D4", 
+		"Standard_D4_v2",
+		"Standard_D5",
+		"Standard_D5_v2",
+                "Standard_A4"
             ],
             "metadata": {
                 "description": "Azure VM size for VM-Series"
@@ -186,8 +202,8 @@
     "variables": {
         "apiVersion": "2015-06-15",
         "imagePublisher": "paloaltonetworks",
-    	"imageSku" : "byol",
-	    "imageOffer" : "vmseries1",
+    	"imageSku" : "bundle1",
+	 "imageOffer" : "vmseries1",
         "fwpublicIPName": "[concat(parameters('vmName'), '-fwMgmtPublicIP')]",
         "nicName": "[concat(parameters('vmName'), '-eth')]",
         "FWPrivateIPAddressUntrust": "[parameters('subnet1StartAddress')]",
@@ -428,6 +444,9 @@
           },
           "nicName": {
             "value": "[variables('nicName')]"
+          },
+  	 "imageVersion": {
+            "value": "[parameters('imageVersion')]"
           },
           "vmSize": {
             "value": "[parameters('vmSize')]"
