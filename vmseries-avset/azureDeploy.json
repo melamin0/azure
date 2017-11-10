@@ -119,13 +119,6 @@
                 "description": "Azure VM size for VM-Series"
             }
         },
-	"availabilitySetName": {
-            "type": "string",
-	    "defaultValue": "VMSeriesFwAvSet",
-            "metadata": {
-                "description": "Azure Availability Set for VM-Series firewalls"
-            }
-        },
         "srcIPInboundNSG": {
             "type": "string",
             "metadata": {
@@ -138,7 +131,7 @@
 		"metadata": {
 			"artifactsBaseUrl": ""
 		},
-		"defaultValue": "https://raw.githubusercontent.com/PaloAltoNetworks/azure/master/vmseries-avset"
+		"defaultValue": "https://raw.githubusercontent.com/melamin0/azure/master/vmseries-avset"
 	},
     "virtualNetworkName": {
       "type": "string",
@@ -262,12 +255,6 @@
 	  }
         }
     },
-    {
-      "apiVersion": "2015-05-01-preview",
-      "type": "Microsoft.Compute/availabilitySets",
-      "name": "[parameters('availabilitySetName')]",
-      "location": "[resourceGroup().location]"
-    }, 
     {
         "apiVersion": "[variables('apiVersion')]",
         "type": "Microsoft.Network/publicIPAddresses",
@@ -487,10 +474,7 @@
           },
           "sshKey": {
             "value": "[parameters('sshKey')]"
-          },
-        "availabilitySetName": {
-          "value": "[parameters('availabilitySetName')]"
-        }
+          }
         }
       }
     }
